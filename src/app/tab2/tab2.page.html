@@ -1,9 +1,52 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab Two
-    </ion-title>
+    <ion-title>Make Your Reservation</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content class="ion-padding">
+  <form [formGroup]="reservationForm">
+      <ion-label>Name</ion-label>
+      <ion-input formControlName="name" placeholder="input name"></ion-input>
+      <ion-label>Email</ion-label>
+      <ion-input type="email" formControlName="email" placeholder="input email"></ion-input>
+      <ion-label>Contact Number</ion-label>
+      <ion-input formControlName="contactNum" placeholder="input contact"></ion-input>
+      <ion-label>Date of Birth</ion-label>
+      <ion-input type="date" formControlName="dob" placeholder="input date"></ion-input>
+      <ion-label>Username</ion-label>
+      <ion-input formControlName="username" placeholder="input username"></ion-input>
+      <ion-label>Hairstylist</ion-label>
+      <!-- <ul style="list-style: none; padding-left: 10px">
+        <li 
+          *ngFor="let stylist of hairstylist"
+          style="padding: 10px;margin-bottom:10px; border: solid 0.5px grey; border-radius: 5px"
+          [class.selected]="reservationForm.value.hairStylist === stylist.value" 
+          (click)="clickOption(stylist.value)" 
+        >{{stylist.name}}</li>
+      </ul> -->
+
+      <ion-item>
+        <ion-select>
+          <ion-select-option 
+          *ngFor="let stylist of hairstylist"
+          [class.selected]="reservationForm.value.hairStylist === stylist.name" 
+          (click)="clickOption(stylist.name)" 
+          >{{stylist.name}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+
+      <!-- <ion-select placeholder="Test select" formControlName="userRole">
+        <ion-select-option *ngFor="let option of options">{{option}}</ion-select-option>
+      </ion-select> -->
+    </form>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="submitEdit()">Submit</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
